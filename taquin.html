@@ -36,6 +36,37 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- <script src="script.js"></script> -->
+    <script>
+        // Declare variables
+        let blankT = 0, blankL = 0;
+        let currentT = 0, currentL = 0;
+        let tempT = 0, tempL = 0;
+        
+        $('.square').click(function() {
+            // Get the positions of the clicked square and the blank one
+            blankT = Math.floor($('#square16').position().top);
+            blankL = $('#square16').position().left;
+            currentT = Math.floor($(this).position().top);
+            currentL = $(this).position().left;
+            tempT = blankT;
+            tempL = blankL;
+
+            console.log(currentT);
+            console.log(blankT);
+            console.log(currentL);
+            console.log(blankL);
+            
+            // Check if the clicked square is adjacent to the blank square
+            if ((currentT == (blankT - 100) && currentL == blankL) || (currentT == (blankT + 100) && currentL == blankL) || (currentT == blankT && currentL == (blankL - 100)) || (currentT == blankT && currentL == (blankL + 100))) {
+                // Change their positions
+                $('#square16').css({left : `${currentL}px`, top : `${currentT}px`});
+                $(this).css({
+                    left : `${tempL}px`,
+                    top : `${tempT}px`
+                });   
+            }    
+        });
+    </script>
 </body>
 
 </html>
