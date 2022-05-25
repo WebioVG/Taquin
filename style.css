@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    width: 100vw;
+}
+
+.square {
+    box-sizing: border-box;
+    border: 1px solid #000;
+    height: 100px;
+    line-height: 100px;
+    position: absolute;
+    text-align: center;
+    width: 100px;
+}
+
+.taquin_display {
+    border: 1px solid #000;
+    height: 400px;
+    position: relative;
+    width: 400px;
+}
+
+#square1 {
+    left: 0;
+    top: 0;
+}
+#square2 {
+    left: 100px;
+    top: 0;
+}
+#square3 {
+    left: 200px;
+    top: 0;
+}
+#square4 {
+    left: 300px;
+    top: 0;
+}
+#square5 {
+    left: 0;
+    top: 100px;
+}
+#square6 {
+    left: 100px;
+    top: 100px;
+}
+#square7 {
+    left: 200px;
+    top: 100px;
+}
+#square8 {
+    left: 300px;
+    top: 100px;
+}
+#square9 {
+    left: 0;
+    top: 200px;
+}
+#square10 {
+    left: 100px;
+    top: 200px;
+}
+#square11 {
+    left: 200px;
+    top: 200px;
+}
+#square12 {
+    left: 300px;
+    top: 200px;
+}
+#square13 {
+    left: 0;
+    top: 300px;
+}
+#square14 {
+    left: 100px;
+    top: 300px;
+}
+#square15 {
+    left: 200px;
+    top: 300px;
+}
+#square16 {
+    left: 300px;
+    top: 300px;
+}
