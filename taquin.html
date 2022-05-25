@@ -41,6 +41,7 @@
         let blankT = 0, blankL = 0;
         let currentT = 0, currentL = 0;
         let tempT = 0, tempL = 0;
+        let random1 = 0, random2 = 0;
         
         $('.square').click(function() {
             // Get the positions of the clicked square and the blank one
@@ -66,6 +67,31 @@
                 });   
             }    
         });
+
+        // Change the square positions randomly when the page loads
+        for (let i = 0; i < 50; i++) {
+            // Generate 2 different random numbers between 0 and 15
+            random1 = Math.floor(Math.random() * (16 - 0));
+            do {
+                random2 = Math.floor(Math.random() * (16 - 0));
+            } while (random2 == random1);
+
+            // Get two random squares
+            let change1 = $(`#square${random1}`);
+            let change2 = $(`#square${random2}`);
+            let change1T = Math.abs(change1.position().top);
+            let change1L = Math.abs(change1.position().left);
+            
+            // Change positions
+            change1.css({
+                left: `${change2.position().left}px`,
+                top: `${change2.position().top}px`
+            });
+            change2.css({
+                left: `${change1L}px`,
+                top: `${change1T}px`
+            });
+        }
     </script>
 </body>
 
