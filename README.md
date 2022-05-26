@@ -9,7 +9,7 @@ Voici la liste des fonctionnalités à implémenter :
 
 - On commence par créer l'apparence du jeu (maquette fournie) avec des cases de 100px sur 100px. On va commencer par un 4 par 4. Il faut donc avoir 15 carrés avec une zone vide.
 
-![](maquette.png)
+![](img/maquette.png)
 
 - On doit ensuite pouvoir cliquer sur chaque case du jeu. On doit positionner ce carré sur la place vide.
   Chaque carré doit être positionné (relative ou absolute) par rapport à la zone du jeu.
