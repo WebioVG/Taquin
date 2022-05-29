@@ -529,6 +529,16 @@
         $('.stop-button').click(function () {
             if (gameIsRunning) {
                 stopGame();
+                setInitialPositions();
+            }
+        });
+
+        // Stop the game and mix the picture
+        $('.retry-button').click(function () {
+            if (gameIsRunning) {
+                stopGame();
+                setInitialPositions();
+                launchGame();
             }
         });
 
@@ -554,6 +564,7 @@
 
         // Load image
         $('#change_Image').click(function() {
+            stopGame();
             loadImage();
         });
     </script>
