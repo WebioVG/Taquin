@@ -87,7 +87,6 @@ body {
 
 .taquin_display {
     border: 1px solid #000;
-    background-color: burlywood;
     height: 400px;
     position: relative;
     width: 400px;
@@ -231,7 +230,8 @@ body {
     top: 300px;
 }
 #square16 {
-    background-color: gainsboro;
+    background-image: url(img/vegeta_Logo.jpeg);
+    background-size: cover;
     left: 300px;
     top: 300px;
     z-index: 0;

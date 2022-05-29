@@ -36,7 +36,7 @@
             <div id="square13" class="square" data-key="13">13</div>
             <div id="square14" class="square" data-key="14">14</div>
             <div id="square15" class="square" data-key="15">15</div>
-            <div id="square16" class="square" data-key="16">#</div>
+            <div id="square16" class="square" data-key="16"></div>
         </div>
 
         <div class="menu">
@@ -63,7 +63,7 @@
         let random1 = 0, random2 = 0;
         let timerIsRunning = false, gameIsRunning = false, godModIsRunning = false;
         let change1T, change1L, change2T, change2L;
-        let i;
+        let i, i2;
         let squareAtBlank;
 
         ///////////////////////
@@ -196,7 +196,9 @@
 
                     godModIsRunning = true;
 
-                    checkVictory();
+                    i2 = setTimeout(function() {
+                        checkVictory();
+                    }, 600);
                 });
             } else {
                 $('.square').off('click');
@@ -244,7 +246,9 @@
                         clickCounter++;
                         $('.turns').text(`Counter: ${clickCounter}`);
 
-                        checkVictory();
+                        i2 = setTimeout(function() {
+                            checkVictory();
+                        }, 600);
                     }
                 });
             } else {
@@ -295,6 +299,8 @@
                 gameIsRunning = false;
                 checkSquareClick();
                 loadTimer();
+
+                alert('You won!');
             }
         }
 
