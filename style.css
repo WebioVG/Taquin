@@ -4,14 +4,44 @@ body {
     margin: 0;
 }
 
+.change_Image_Button {
+    color: #fff;
+    width: 50px;
+}
+
 .container {
     align-items: center;
     background-color: rgba(0,0,0,0.5);
     display: flex;
-    flex-direction: column;
-    height: 100vh;
     justify-content: center;
     width: 100vw;
+}
+
+.help {
+    align-items: center;
+    backdrop-filter: blur( 3px );
+    background-color: rgba(180,180,180,0.5);
+    border: 1px solid #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: center;
+    height: 350px;
+    width: 18%;
+}
+
+.help_Button {
+    background-color: rgba(180,180,180,0.3);
+    border: 1px solid #000;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px #000;
+    color: #000;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+    padding: 0.8rem;
+    text-align: center;
 }
 
 .header {
@@ -21,6 +51,14 @@ body {
     height: 70px;
     justify-content: space-between;
     width: 400px;
+}
+
+.main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
 }
 
 .menu {
@@ -122,6 +160,19 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     width: 100px;
+}
+
+.wheel {
+    animation: rotatingWheel linear 3s infinite;
+    width: 30px;
+}
+
+.wheel_Container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+    width: 100%;
 }
 
 #square1 {
@@ -235,4 +286,15 @@ body {
     left: 300px;
     top: 300px;
     z-index: 0;
+}
+
+@keyframes rotatingWheel {
+    from {transform: rotateZ(0deg);}
+    to {transform: rotateZ(360deg);}
+}
+
+@media (min-width: 1024px) {
+    .help {
+        width: 8%;
+    }
 }
