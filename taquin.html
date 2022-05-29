@@ -55,17 +55,66 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- <script src="script.js"></script> -->
     <script>
-        // Declare variables //
+
+        ///////////////////////
+        // DECLARE VARIABLES //
+        ///////////////////////
+        
         let random1 = 0, random2 = 0;
-        let timerIsRunning = false, gameIsRunning = false;
+        let timerIsRunning = false, gameIsRunning = false, godModIsRunning = false;
         let change1T, change1L, change2T, change2L;
         let i;
+        let squareAtBlank;
 
-        // FUNCTIONS - start //
+        ///////////////////////
+        // Get HTML elements //
+        ///////////////////////
 
-        // Function - Change the square positions randomly
+        let squares = $('.square');
+
+        ///////////////
+        // FUNCTIONS //
+        ///////////////
+
+        // FUNCTION - Change the square positions randomly
         function mixGame() {
+
+            // Stop the transition to prevent problems such as getting wrong top and left values
+            $('.square').css({
+                'transition-duration': '0ms',
+            });
+            $('.square').css({
+                'transition-duration': '0ms',
+            });
+
+            // Get the square which is at the blank position
+            for (let square of squares) {
+                if (Math.floor($(square).position().left) == 300 &&
+                Math.floor($(square).position().top) == 300) {
+                    squareAtBlank = $(square);
+                }
+            }
+
+            // Get the top and left values of the blank and the square at blank position
+            let blankT = Math.floor($('#square16').position().top);
+            let blankL = Math.floor($('#square16').position().left);
+            let squareAtBlankT = Math.floor(squareAtBlank.position().top);
+            let squareAtBlankL = Math.floor(squareAtBlank.position().left);
+
+            // Put the blank at its initial position
+            $('#square16').css({
+                left: `${squareAtBlankL}px`,
+                top: `${squareAtBlankT}px`,
+            });
+            squareAtBlank.css({
+                left: `${blankL}px`,
+                top: `${blankT}px`,
+            });
+
+
+            // Mix 100 times two random squares
             for (let i = 0; i < 100; i++) {
+
                 // Generate 2 different random numbers between 0 and 15
                 random1 = Math.floor(Math.random() * 15 + 1);
                 do {
@@ -86,15 +135,21 @@
 
                 $(`#square${random2}`).css({
                     left: `${change1L}px`,
-                    top: `${change1T}px`
+                    top: `${change1T}px`,
                 });
             }
+
+            // Reassign the transition duration
+            $('.square').css({
+                'transition-duration': '500ms',
+            });
         }
 
-        // Function - Load the timer and displays it
+        // Function - Load/Cancel the timer and displays it
         function loadTimer() {
             let time = 0
 
+            // Load the timer
             if (!timerIsRunning) {
                 i = setInterval(function () {
                     time++;
@@ -103,7 +158,7 @@
                 }, 1000);
 
                 timerIsRunning = true;
-            } else {
+            } else /*Cancel the timer*/ {
                 clearInterval(i);
 
                 time = 0;
@@ -115,35 +170,45 @@
 
         // Function - Enable or disable godmod
         function godMod() {
-            if (gameIsRunning) {
+            if (!godModIsRunning) {
+                // Disable the actual event which checks the click on adjacent squares
                 $('.square').off('click');
+
+                // Applicate a new event without checking adjacent squares
                 $('.square').click(function test() {
+
                     // Get the positions of the clicked square and the blank one
                     blankT = Math.floor($('#square16').position().top);
                     blankL = Math.floor($('#square16').position().left);
                     currentT = Math.floor($(this).position().top);
                     currentL = Math.floor($(this).position().left);
-    
+
                     // Change their positions
                     $('#square16').css({
                         left: `${currentL}px`,
-                        top: `${currentT}px`
+                        top: `${currentT}px`,
                     });
 
                     $(this).css({
                         left: `${blankL}px`,
-                        top: `${blankT}px`
+                        top: `${blankT}px`,
                     });
 
+                    godModIsRunning = true;
+
                     checkVictory();
-                    });
+                });
             } else {
                 $('.square').off('click');
+                checkSquareClick();
+
+                godModIsRunning = false;
             }
         }
 
         // Function - Check if a square is clicked and displays it
         function checkSquareClick() {
+
             // Declare variables
             let clickCounter = 0;
             let blankT = 0, blankL = 0;
@@ -154,26 +219,27 @@
 
             if (gameIsRunning) {
                 $('.square').click(function test() {
+
                     // Get the positions of the clicked square and the blank one
                     blankT = Math.floor($('#square16').position().top);
                     blankL = Math.floor($('#square16').position().left);
                     currentT = Math.floor($(this).position().top);
                     currentL = Math.floor($(this).position().left);
-    
+
                     // Check if the clicked square is adjacent to the blank square
                     if ((currentT == (blankT - 100) && currentL == blankL) || (currentT == (blankT + 100) && currentL == blankL) || (currentT == blankT && currentL == (blankL - 100)) || (currentT == blankT && currentL == (blankL + 100))) {
-    
+
                         // Change their positions
                         $('#square16').css({
                             left: `${currentL}px`,
                             top: `${currentT}px`
                         });
-    
+
                         $(this).css({
                             left: `${blankL}px`,
                             top: `${blankT}px`
                         });
-    
+
                         // Increase and display the click counter
                         clickCounter++;
                         $('.turns').text(`Counter: ${clickCounter}`);
@@ -186,8 +252,10 @@
             }
         }
 
-        // Check victory
+        // Function - Check victory
         function checkVictory() {
+
+            // Get the actual position of every square 
             let square1Position = [Math.floor($('#square1').position().left), Math.floor($('#square1').position().top)];
             let square2Position = [Math.floor($('#square2').position().left), Math.floor($('#square2').position().top)];
             let square3Position = [Math.floor($('#square3').position().left), Math.floor($('#square3').position().top)];
@@ -205,33 +273,35 @@
             let square15Position = [Math.floor($('#square15').position().left), Math.floor($('#square15').position().top)];
             let square16Position = [Math.floor($('#square16').position().left), Math.floor($('#square16').position().top)];
 
+            // Check if the squares are at their initial positions
             if ((square1Position[0] == 0 && square1Position[1] == 0) &&
-            (square2Position[0] == 100 && square2Position[1] == 0) &&
-            (square3Position[0] == 200 && square3Position[1] == 0) &&
-            (square4Position[0] == 300 && square4Position[1] == 0) &&
-            (square5Position[0] == 0 && square5Position[1] == 100) &&
-            (square6Position[0] == 100 && square6Position[1] == 100) &&
-            (square7Position[0] == 200 && square7Position[1] == 100) &&
-            (square8Position[0] == 300 && square8Position[1] == 100) &&
-            (square9Position[0] == 0 && square9Position[1] == 200) &&
-            (square10Position[0] == 100 && square10Position[1] == 200) &&
-            (square11Position[0] == 200 && square11Position[1] == 200) &&
-            (square12Position[0] == 300 && square12Position[1] == 200) &&
-            (square13Position[0] == 0 && square13Position[1] == 300) &&
-            (square14Position[0] == 100 && square14Position[1] == 300) &&
-            (square15Position[0] == 200 && square15Position[1] == 300) &&
-            (square16Position[0] == 300 && square16Position[1] == 300)) {
-                console.log('Victory!');
+                (square2Position[0] == 100 && square2Position[1] == 0) &&
+                (square3Position[0] == 200 && square3Position[1] == 0) &&
+                (square4Position[0] == 300 && square4Position[1] == 0) &&
+                (square5Position[0] == 0 && square5Position[1] == 100) &&
+                (square6Position[0] == 100 && square6Position[1] == 100) &&
+                (square7Position[0] == 200 && square7Position[1] == 100) &&
+                (square8Position[0] == 300 && square8Position[1] == 100) &&
+                (square9Position[0] == 0 && square9Position[1] == 200) &&
+                (square10Position[0] == 100 && square10Position[1] == 200) &&
+                (square11Position[0] == 200 && square11Position[1] == 200) &&
+                (square12Position[0] == 300 && square12Position[1] == 200) &&
+                (square13Position[0] == 0 && square13Position[1] == 300) &&
+                (square14Position[0] == 100 && square14Position[1] == 300) &&
+                (square15Position[0] == 200 && square15Position[1] == 300) &&
+                (square16Position[0] == 300 && square16Position[1] == 300)) {
 
+                // End the game
                 gameIsRunning = false;
                 checkSquareClick();
+                loadTimer();
             }
         }
 
         // Function - Launch the game
         function launchGame() {
             gameIsRunning = true;
-                
+
             mixGame();
             loadTimer();
             checkSquareClick();
@@ -240,7 +310,7 @@
         // Function - Stop the game
         function stopGame() {
             gameIsRunning = false;
-                
+
             loadTimer();
             checkSquareClick();
         }
@@ -255,18 +325,17 @@
                 launchGame();
             }
         });
-        
+
         // Stop the game when the stop button is clicked
-        $('.stop-button').click(function() {
+        $('.stop-button').click(function () {
             if (gameIsRunning) {
                 stopGame();
             }
         });
 
         // Watch and activate godmod
-        $(window).keydown(function(event) {
-            console.log(event);
-            if(event.key == 'm') {
+        $(window).keydown(function (event) {
+            if (gameIsRunning && event.key == 'M' && event.shiftKey == true) {
                 godMod();
             }
         });
