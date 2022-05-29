@@ -23,7 +23,7 @@
 
             <div class="taquin_display">
                 <div id="imageFull"></div>
-                
+
                 <div id="square1" class="square" data-key="1"></div>
                 <div id="square2" class="square" data-key="2"></div>
                 <div id="square3" class="square" data-key="3"></div>
@@ -121,6 +121,7 @@
         let change1T, change1L, change2T, change2L;
         let i, i2;
         let squareAtBlank;
+        let images = ['url(img/goku_SSB.jpg)', 'url(img/earth.jpg)', 'url(img/plant.jpg)', 'url(img/cats.jpg)', 'url(img/einstein.png)', 'url(img/piano.jpg)'];
 
         ///////////////////////
         // Get HTML elements //
@@ -378,6 +379,7 @@
             checkSquareClick();
         }
 
+        // Function - Show or hide numbers (help)
         function showNumbers() {
             console.log(squares[0]);
 
@@ -387,8 +389,6 @@
 
                 for (let square of squares) {
                     counterNumbers++;
-
-                    // console.log($(square));
 
                     if(counterNumbers != 16) {
                         $(square).text(counterNumbers);
@@ -402,6 +402,115 @@
                 }
 
                 isShowNumbers = false;
+            }
+        }
+
+        // Function - Load a new image from the database
+        function loadImage() {
+            let random = Math.floor(Math.random() * 6);
+            let counterImages = 0;
+
+            console.log(random);
+            for (let square of squares) {
+                console.log(images[random]);
+                counterImages++;
+                
+                if (counterImages != 16) {
+                    $(square).css({
+                        'background-image': `${images[random]}`,
+                    });
+                }
+            }
+
+            gameIsRunning = false;
+            checkSquareClick();
+            setInitialPositions();
+        }
+
+        // Function - Move the squares to their initial positions 
+        function setInitialPositions() {
+            for (let square of squares) {
+                if ($(square).data().key == 1) {
+                    $(square).css({
+                        left: 0,
+                        top: 0,
+                    });
+                } else if ($(square).data().key == 2) {
+                    $(square).css({
+                        left: '100px',
+                        top: 0,
+                    });
+                } else if ($(square).data().key == 3) {
+                    $(square).css({
+                        left: '200px',
+                        top: 0,
+                    });
+                } else if ($(square).data().key == 4) {
+                    $(square).css({
+                        left: '300px',
+                        top: 0,
+                    });
+                } else if ($(square).data().key == 5) {
+                    $(square).css({
+                        left: 0,
+                        top: '100px',
+                    });
+                } else if ($(square).data().key == 6) {
+                    $(square).css({
+                        left: '100px',
+                        top: '100px',
+                    });
+                } else if ($(square).data().key == 7) {
+                    $(square).css({
+                        left: '200px',
+                        top: '100px',
+                    });
+                } else if ($(square).data().key == 8) {
+                    $(square).css({
+                        left: '300px',
+                        top: '100px',
+                    });
+                } else if ($(square).data().key == 9) {
+                    $(square).css({
+                        left: 0,
+                        top: '200px',
+                    });
+                } else if ($(square).data().key == 10) {
+                    $(square).css({
+                        left: '100px',
+                        top: '200px',
+                    });
+                } else if ($(square).data().key == 11) {
+                    $(square).css({
+                        left: '200px',
+                        top: '200px',
+                    });
+                } else if ($(square).data().key == 12) {
+                    $(square).css({
+                        left: '300px',
+                        top: '200px',
+                    });
+                } else if ($(square).data().key == 13) {
+                    $(square).css({
+                        left: 0,
+                        top: '300px',
+                    });
+                } else if ($(square).data().key == 14) {
+                    $(square).css({
+                        left: '100px',
+                        top: '300px',
+                    });
+                } else if ($(square).data().key == 15) {
+                    $(square).css({
+                        left: '200px',
+                        top: '300px',
+                    });
+                } else if ($(square).data().key == 16) {
+                    $(square).css({
+                        left: '300px',
+                        top: '300px',
+                    });
+                }
             }
         }
 
@@ -441,6 +550,11 @@
         });
         $('#show_Image').mouseleave(function() {
                 imageFull.removeClass('help_Show_Image');
+        });
+
+        // Load image
+        $('#change_Image').click(function() {
+            loadImage();
         });
     </script>
 </body>

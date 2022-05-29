@@ -123,7 +123,8 @@ body {
 }
 
 .square {
-    background-color: gray;
+    background-image: url(img/goku_SSB.jpg);
+    background-size: 400px;
     box-sizing: border-box;
     border: 1px solid #000;
     color: #fff;
@@ -189,105 +190,90 @@ body {
 }
 
 #square1 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: 0;
     background-position-y: 0;
     left: 0;
     top: 0;
 }
 #square2 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -100px;
     background-position-y: 0;
     left: 100px;
     top: 0;
 }
 #square3 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -200px;
     background-position-y: 0;
     left: 200px;
     top: 0;
 }
 #square4 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -300px;
     background-position-y: 0;
     left: 300px;
     top: 0;
 }
 #square5 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: 0;
     background-position-y: -100px;
     left: 0;
     top: 100px;
 }
 #square6 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -100px;
     background-position-y: -100px;
     left: 100px;
     top: 100px;
 }
 #square7 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -200px;
     background-position-y: -100px;
     left: 200px;
     top: 100px;
 }
 #square8 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -300px;
     background-position-y: -100px;
     left: 300px;
     top: 100px;
 }
 #square9 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: 0;
     background-position-y: -200px;
     left: 0;
     top: 200px;
 }
 #square10 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -100px;
     background-position-y: -200px;
     left: 100px;
     top: 200px;
 }
 #square11 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -200px;
     background-position-y: -200px;
     left: 200px;
     top: 200px;
 }
 #square12 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -300px;
     background-position-y: -200px;
     left: 300px;
     top: 200px;
 }
 #square13 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: 0;
     background-position-y: -300px;
     left: 0;
     top: 300px;
 }
 #square14 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -100px;
     background-position-y: -300px;
     left: 100px;
     top: 300px;
 }
 #square15 {
-    background-image: url(img/goku_SSB.jpg);
     background-position-x: -200px;
     background-position-y: -300px;
     left: 200px;
