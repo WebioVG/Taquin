@@ -22,6 +22,8 @@
             </header>
 
             <div class="taquin_display">
+                <div id="imageFull"></div>
+                
                 <div id="square1" class="square" data-key="1"></div>
                 <div id="square2" class="square" data-key="2"></div>
                 <div id="square3" class="square" data-key="3"></div>
@@ -125,6 +127,7 @@
         ///////////////////////
 
         let squares = $('.square');
+        let imageFull = $('#imageFull');
 
         ///////////////
         // FUNCTIONS //
@@ -430,6 +433,14 @@
         // Show numbers
         $('#show_Numbers').click(function () {
             showNumbers();
+        });
+
+        // Show/hide image
+        $('#show_Image').mouseenter(function() {
+                imageFull.addClass('help_Show_Image');
+        });
+        $('#show_Image').mouseleave(function() {
+                imageFull.removeClass('help_Show_Image');
         });
     </script>
 </body>

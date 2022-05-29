@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-image: url(img/background.png);
     background-size: cover;
@@ -42,6 +46,15 @@ body {
     margin: 10px 0;
     padding: 0.8rem;
     text-align: center;
+}
+
+.help_Show_Image {
+    background-image: url(img/goku_SSB.jpg);
+    border: 1px solid #000;
+    height: 400px;
+    position: absolute;
+    width: 400px;
+    z-index: 100;
 }
 
 .header {
