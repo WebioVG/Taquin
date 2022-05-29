@@ -122,6 +122,7 @@
         let i, i2;
         let squareAtBlank;
         let images = ['url(img/goku_SSB.jpg)', 'url(img/earth.jpg)', 'url(img/plant.jpg)', 'url(img/cats.jpg)', 'url(img/einstein.png)', 'url(img/piano.jpg)'];
+        var random = 0; //random index to scan the images array
 
         ///////////////////////
         // Get HTML elements //
@@ -407,10 +408,9 @@
 
         // Function - Load a new image from the database
         function loadImage() {
-            let random = Math.floor(Math.random() * 6);
+            random = Math.floor(Math.random() * 6);
             let counterImages = 0;
 
-            console.log(random);
             for (let square of squares) {
                 console.log(images[random]);
                 counterImages++;
@@ -557,6 +557,10 @@
         // Show/hide image
         $('#show_Image').mouseenter(function() {
                 imageFull.addClass('help_Show_Image');
+                imageFull.css({
+                    'background-image': `${images[random]}`,
+                    'background-size': '400px',
+                });
         });
         $('#show_Image').mouseleave(function() {
                 imageFull.removeClass('help_Show_Image');
