@@ -410,18 +410,23 @@
         function loadImage() {
             random = Math.floor(Math.random() * 6);
             let counterImages = 0;
+            let activeImage = '';
 
-            for (let square of squares) {
-                console.log(images[random]);
-                counterImages++;
-                
-                if (counterImages != 16) {
-                    $(square).css({
-                        'background-image': `${images[random]}`,
-                    });
+            if (!activeImage) {
+                for (let square of squares) {
+                    console.log(images[random]);
+                    counterImages++;
+                    
+                    if (counterImages != 16) {
+                        $(square).css({
+                            'background-image': `${images[random]}`,
+                        });
+                    }
                 }
+
             }
 
+            activeImage = images[random];
             gameIsRunning = false;
             checkSquareClick();
             setInitialPositions();
